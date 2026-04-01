@@ -1,0 +1,52 @@
+{
+  "podcast": {
+    "title": "チェンマイ・デイリー・ラジオ",
+    "description": "タイ・チェンマイの最新ローカルニュースを毎朝日本語でお届けするポッドキャスト",
+    "language": "ja",
+    "author": "Chiangmai Daily Radio",
+    "email": "podcast@chiangmai-daily-radio.com",
+    "category": "News",
+    "subcategory": "Daily News",
+    "image_url": "https://pub-placeholder.r2.dev/cover.jpg",
+    "website": "https://chiangmai-daily-radio.com",
+    "copyright": "© 2026 Chiangmai Daily Radio"
+  },
+  "audio": {
+    "language_code": "ja-JP",
+    "voice_name": "ja-JP-Neural2-B",
+    "speaking_rate": 1.05,
+    "pitch": 0.0,
+    "audio_encoding": "MP3",
+    "sample_rate_hertz": 24000
+  },
+  "news_sources": [
+    {
+      "name": "The Thaiger Chiang Mai",
+      "url": "https://thethaiger.com/category/chiang-mai/feed",
+      "type": "rss"
+    },
+    {
+      "name": "Chiangmai Citylife",
+      "url": "https://www.chiangmaicitylife.com/feed/",
+      "type": "rss"
+    },
+    {
+      "name": "Bangkok Post Chiang Mai",
+      "url": "https://www.bangkokpost.com/rss/data/topstories.xml",
+      "type": "rss",
+      "filter_keyword": "Chiang Mai"
+    }
+  ],
+  "schedule": {
+    "timezone": "Asia/Bangkok",
+    "publish_hour_jst": 7
+  },
+  "r2": {
+    "bucket": "chiangmai-daily-radio",
+    "public_url_base": "https://pub-placeholder.r2.dev"
+  },
+  "rss": {
+    "feed_path": "docs/feed.xml",
+    "max_episodes": 30
+  }
+}

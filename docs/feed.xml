@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <title>チェンマイ・デイリー・ラジオ</title>
+    <link>https://chiangmai-daily-radio.com</link>
+    <description>タイ・チェンマイの最新ローカルニュースを毎朝日本語でお届けするポッドキャスト</description>
+    <language>ja</language>
+    <copyright>© 2026 Chiangmai Daily Radio</copyright>
+    <lastBuildDate>Tue, 01 Apr 2026 07:00:00 +0900</lastBuildDate>
+    <itunes:author>Chiangmai Daily Radio</itunes:author>
+    <itunes:explicit>false</itunes:explicit>
+    <itunes:image href="https://pub-placeholder.r2.dev/cover.jpg" />
+    <itunes:owner>
+      <itunes:name>Chiangmai Daily Radio</itunes:name>
+      <itunes:email>podcast@chiangmai-daily-radio.com</itunes:email>
+    </itunes:owner>
+    <itunes:category text="News" />
+  </channel>
+</rss>
