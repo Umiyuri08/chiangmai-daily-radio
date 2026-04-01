@@ -28,7 +28,7 @@ jobs:
 
       - name: Set up Google Cloud credentials
         run: |
-          echo '${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}' > /tmp/gcp_key.json
+          echo '${{ secrets.GOOGLE_TTS_CREDENTIALS }}' | base64 -d > /tmp/gcp_key.json
           echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/gcp_key.json" >> $GITHUB_ENV
 
       - name: Step 1 - Fetch Chiangmai news
