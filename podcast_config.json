@@ -42,7 +42,7 @@
     "publish_hour_jst": 7
   },
   "r2": {
-    "bucket": "chiangmai-daily-radio",
+    "bucket": "chiangmai-podcast",
     "public_url_base": "https://pub-placeholder.r2.dev"
   },
   "rss": {
