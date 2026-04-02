@@ -27,6 +27,9 @@ def get_r2_client():
 
 def upload_mp3(local_path, filename: str) -> str:
     """MP3をR2にアップロードしてパブリックURLを返す"""
+    print(f"[DEBUG] R2_ACCOUNT_ID: {R2_ACCOUNT_ID}")
+    print(f"[DEBUG] Bucket: {R2['bucket']}")
+    print(f"[DEBUG] Endpoint: https://{R2_ACCOUNT_ID}.r2.cloudflarestorage.com")
     client = get_r2_client()
     bucket = R2["bucket"]
     key = f"episodes/{filename}"
