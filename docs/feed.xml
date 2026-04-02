@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
   <channel>
     <title>チェンマイ・デイリー・ラジオ</title>
     <link>https://Umiyuri08.github.io/chiangmai-daily-radio</link>
     <description>タイ・チェンマイの最新ローカルニュースを毎朝日本語でお届けするポッドキャスト</description>
     <language>ja</language>
     <copyright>© 2026 Chiangmai Daily Radio</copyright>
-    <lastBuildDate>Tue, 01 Apr 2026 07:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 03 Apr 2026 00:40:14 +0900</lastBuildDate>
     <itunes:author>Chiangmai Daily Radio</itunes:author>
     <itunes:explicit>false</itunes:explicit>
     <itunes:image href="https://pub-placeholder.r2.dev/cover.jpg" />
@@ -15,5 +15,31 @@
       <itunes:email>songtianlongzhijie652@gmail.com</itunes:email>
     </itunes:owner>
     <itunes:category text="News" />
+    <item>
+      <title>チェンマイ・デイリー・ラジオ - 2026年04月03日</title>
+      <description>チェンマイの最新ニュースをお届けします。2026年04月03日放送分。</description>
+      <content:encoded>&lt;![CDATA[おはようございます！チェンマイ・デイリー・ラジオです。
+
+2026年4月3日、木曜日の朝です。今日もチェンマイからお届けしますよ。さて、今日は少し心配なニュースからお伝えしなければなりません。でも、しっかりチェックして、この時期を上手に乗り越えていきましょう！
+
+今日のメインニュースはこちら。タイ最大の祝祭、ソンクラーンを目前に控えているのに、チェンマイの観光業者たちが頭を悩ませているというお話です。
+
+ソンクラーンといえば、タイのお正月！毎年4月中旬に行われる水かけ祭りで、チェンマイはその最大の盛り上がりスポットとして知られていますよね。例年であれば、国内外から多くの観光客が押し寄せて、街全体がお祭りムード一色になるんです。私もこの時期のチェンマイが大好きで、毎年本当に楽しみにしているんですけど……今年はちょっと状況が厳しそうです。
+
+まず一つ目の問題、スモッグです。チェンマイは毎年この時期、北部タイ特有の煙害に悩まされています。農地の野焼きや森林火災などが原因で、大気汚染がひどくなるんですよね。今年もその状況は続いていて、街全体がもやっとした霞に覆われています。正直、外を歩くのにマスクが欠かせない日が続いていまして、これが観光客の足を遠のかせる大きな要因になっているんです。せっかく水かけ祭りを楽しみに来ても、空気が悪ければ気分も上がりませんよね。観光で訪れる方には、マスクの持参を強くおすすめします！
+
+そして二つ目の問題が、経済的な逆風です。中東情勢の悪化による影響がここチェンマイにも波及しています。紛争の影響で原油価格が高騰し、いわゆる「オイルショック」的な状況が世界規模で起きています。旅行にかかるコスト、特に航空券や交通費が上がっていることで、旅行者の財布の紐が固くなっているんですね。北タイの観光業者たちによると、今年のソンクラーン期間中の客入りはかなり厳しい見通しだということです。ホテルや旅行代理店、飲食店など、観光に携わるビジネスにとっては痛い話です。
+
+チェンマイに住んでいる私としても、街の活気が少し落ち込むのは寂しいなと感じています。ただ、それだけに、地元の人たちが一丸となってこの時期を盛り上げようと頑張っている姿も見えます。地元のお店を応援する、地元のレストランで食事をする、そういった小さな行動がチェンマイの経済を支えることにつながります。
+
+チェンマイにいらっしゃる皆さん、またはこれから訪れる予定の方、ぜひマスクと水かけ用のカッパを忘れずに！スモッグ対策をしっかりしながら、それでもソンクラーンの楽しさを味わっていただければと思います。
+
+さあ、今日も素敵なチェンマイの一日をお過ごしください。チェンマイ・デイリー・ラジオでした！]]&gt;</content:encoded>
+      <pubDate>Fri, 03 Apr 2026 07:00:00 +0900</pubDate>
+      <guid isPermaLink="false">episode_20260403.mp3</guid>
+      <enclosure url="https://pub-placeholder.r2.dev/episodes/episode_20260403.mp3" length="1491648" type="audio/mpeg" />
+      <itunes:duration>00:06:00</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
   </channel>
 </rss>
