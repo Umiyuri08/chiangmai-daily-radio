@@ -13,7 +13,7 @@
   },
 "audio": {
     "language_code": "ja-JP",
-    "voice_name": "ja-JP-Journey-F",
+    "voice_name": "ja-JP-Wavenet-B",
     "speaking_rate": 1.0,
     "pitch": 0.0,
     "audio_encoding": "MP3",
