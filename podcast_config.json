@@ -43,7 +43,7 @@
   },
   "r2": {
     "bucket": "chiangmai-podcast",
-    "public_url_base": "https://pub-placeholder.r2.dev"
+    "public_url_base": "https://pub-5465aafb1e954f18877cee10a7257a0d.r2.dev"
   },
   "rss": {
     "feed_path": "docs/feed.xml",
