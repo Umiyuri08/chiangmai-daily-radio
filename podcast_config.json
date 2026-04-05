@@ -11,14 +11,14 @@
     "website": "https://Umiyuri08.github.io/chiangmai-daily-radio",
     "copyright": "© 2026 Chiangmai Daily Radio"
   },
-  "audio": {
+ "audio": {
     "language_code": "ja-JP",
-    "voice_name": "ja-JP-Neural2-B",
-    "speaking_rate": 1.05,
+    "voice_name": "ja-JP-Journey-F",
+    "speaking_rate": 0.95,
     "pitch": 0.0,
     "audio_encoding": "MP3",
     "sample_rate_hertz": 24000
-  },
+},
  "news_sources": [
     {
       "name": "The Thaiger Chiang Mai",
