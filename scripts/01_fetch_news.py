@@ -21,7 +21,16 @@ def fetch_rss(source: dict) -> list[dict]:
     """RSSフィードを取得してニュース記事リストを返す"""
     articles = []
     try:
+        # HTTPステータスコードとレスポンス先頭200文字をデバッグ出力
+        try:
+            resp = requests.get(source["url"], timeout=10)
+            print(f"[DEBUG]   HTTP {resp.status_code} - {source['url']}")
+            print(f"[DEBUG]   Response preview: {resp.text[:200]!r}")
+        except Exception as req_err:
+            print(f"[DEBUG]   HTTP request failed: {req_err}")
+
         feed = feedparser.parse(source["url"])
+        print(f"[DEBUG]   feedparser entries: {len(feed.entries)}")
         cutoff = datetime.now(tz=JST) - timedelta(hours=FETCH_HOURS)
 
         for entry in feed.entries:
