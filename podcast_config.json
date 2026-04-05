@@ -19,20 +19,20 @@
     "audio_encoding": "MP3",
     "sample_rate_hertz": 24000
   },
-  "news_sources": [
+ "news_sources": [
     {
       "name": "The Thaiger Chiang Mai",
-      "url": "https://thethaiger.com/category/chiang-mai/feed",
+      "url": "https://thethaiger.com/news/chiang-mai/feed",
       "type": "rss"
     },
     {
       "name": "Chiangmai Citylife",
-      "url": "https://www.chiangmaicitylife.com/feed/",
+      "url": "https://www.chiangmaicitylife.com/citynews/feed/",
       "type": "rss"
     },
     {
-      "name": "Bangkok Post Chiang Mai",
-      "url": "https://www.bangkokpost.com/rss/data/topstories.xml",
+      "name": "Chiang Rai Times",
+      "url": "https://www.chiangraitimes.com/feed/",
       "type": "rss",
       "filter_keyword": "Chiang Mai"
     }
