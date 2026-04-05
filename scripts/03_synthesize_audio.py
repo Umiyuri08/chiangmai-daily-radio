@@ -1,7 +1,8 @@
 """
 03_synthesize_audio.py
-台本テキストをGoogle Cloud TTSでMP3音声に変換する
+台本テキストをSSMLに変換してGoogle Cloud TTSでMP3音声に変換する
 """
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -12,26 +13,64 @@ sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent))
 from config import AUDIO, TEMP_DIR
 
 JST = timezone(timedelta(hours=9))
-MAX_BYTES = 4800  # Google TTS の1リクエスト上限（5000バイト）に余裕を持たせた値
+MAX_SSML_BYTES = 4500  # <speak>ラッパー込みで5000バイト以内に収まるよう余裕を持たせた値
 
 
-def split_text(text: str) -> list[str]:
-    """テキストをTTSリクエスト単位に分割する"""
-    chunks = []
-    current = ""
-    for sentence in text.replace("。", "。\n").replace("！", "！\n").replace("？", "？\n").split("\n"):
-        sentence = sentence.strip()
+def _process_sentences(text: str) -> str:
+    """文単位でSSMLインライン要素（break/emphasis/prosody）を適用する"""
+    result = ""
+    for sentence in re.split(r"(?<=[。！？])", text):
         if not sentence:
             continue
-        encoded = (current + sentence).encode("utf-8")
-        if len(encoded) > MAX_BYTES:
-            if current:
-                chunks.append(current)
-            current = sentence
+        stripped = sentence.rstrip()
+        if stripped.endswith("？"):
+            inner = stripped[:-1].replace("。", '<break time="300ms"/>。')
+            result += f'<prosody pitch="+1st">{inner}？</prosody>'
+        elif stripped.endswith("！"):
+            inner = stripped[:-1].replace("。", '<break time="300ms"/>。')
+            result += f'<emphasis level="strong">{inner}！</emphasis>'
         else:
-            current += sentence
+            result += sentence.replace("。", '<break time="300ms"/>。')
+    return result
+
+
+def convert_to_ssml_body(text: str) -> str:
+    """台本テキスト全体をSSMLボディ（<speak>タグなし）に変換する"""
+    lines = []
+    for line in text.split("\n"):
+        line = line.strip()
+        if not line:
+            lines.append("")
+            continue
+
+        # 見出し判定: 40文字未満で文末句読点を含まない行、または♪で始まる行
+        is_heading = (
+            len(line) < 40 and not any(c in line for c in "。！？")
+        ) or line.startswith("♪")
+
+        if is_heading:
+            processed = _process_sentences(line)
+            lines.append(f'<prosody rate="slow" pitch="-1st">{processed}</prosody>')
+        else:
+            lines.append(_process_sentences(line))
+
+    return "\n".join(lines)
+
+
+def split_ssml(ssml_body: str) -> list[str]:
+    """SSMLボディを行単位でチャンク分割し、各チャンクを<speak>で包む"""
+    chunks = []
+    current = ""
+    for line in ssml_body.split("\n"):
+        candidate = (current + "\n" + line).strip() if current else line
+        if len(f"<speak>{candidate}</speak>".encode("utf-8")) > MAX_SSML_BYTES:
+            if current:
+                chunks.append(f"<speak>{current}</speak>")
+            current = line
+        else:
+            current = candidate
     if current:
-        chunks.append(current)
+        chunks.append(f"<speak>{current}</speak>")
     return chunks
 
 
@@ -49,13 +88,14 @@ def synthesize(text: str, output_path: Path) -> None:
         sample_rate_hertz=AUDIO["sample_rate_hertz"],
     )
 
-    chunks = split_text(text)
-    print(f"[INFO] テキストを {len(chunks)} チャンクに分割して合成")
+    ssml_body = convert_to_ssml_body(text)
+    chunks = split_ssml(ssml_body)
+    print(f"[INFO] SSMLを {len(chunks)} チャンクに分割して合成")
 
     audio_parts = []
     for i, chunk in enumerate(chunks, 1):
         print(f"[INFO]   チャンク {i}/{len(chunks)} を合成中...")
-        synthesis_input = texttospeech.SynthesisInput(text=chunk)
+        synthesis_input = texttospeech.SynthesisInput(ssml=chunk)
         response = client.synthesize_speech(
             input=synthesis_input,
             voice=voice,
