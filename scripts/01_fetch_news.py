@@ -14,7 +14,7 @@ sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent))
 from config import NEWS_SOURCES, TEMP_DIR
 
 JST = timezone(timedelta(hours=9))
-FETCH_HOURS = 24  # 過去24時間のニュースを収集
+FETCH_HOURS = 72  # 過去72時間のニュースを収集
 
 
 def fetch_rss(source: dict) -> list[dict]:
@@ -34,10 +34,13 @@ def fetch_rss(source: dict) -> list[dict]:
         cutoff = datetime.now(tz=JST) - timedelta(hours=FETCH_HOURS)
 
         for entry in feed.entries:
-            # 公開日時を取得
+            # 公開日時を取得（パース失敗時は現在時刻を使用してスキップしない）
             published = None
             if hasattr(entry, "published_parsed") and entry.published_parsed:
-                published = datetime(*entry.published_parsed[:6], tzinfo=timezone.utc).astimezone(JST)
+                try:
+                    published = datetime(*entry.published_parsed[:6], tzinfo=timezone.utc).astimezone(JST)
+                except Exception:
+                    published = datetime.now(tz=JST)
             else:
                 published = datetime.now(tz=JST)
 
