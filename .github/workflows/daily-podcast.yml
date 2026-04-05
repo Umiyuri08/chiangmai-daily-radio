@@ -9,7 +9,13 @@ on:
 jobs:
   generate-and-publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
+
+    services:
+      voicevox:
+        image: voicevox/voicevox_engine:cpu-latest
+        ports:
+          - 50021:50021
 
     steps:
       - name: Checkout repository
@@ -26,10 +32,18 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Set up Google Cloud credentials
+      - name: Wait for VOICEVOX engine to be ready
         run: |
-          echo '${{ secrets.GOOGLE_TTS_CREDENTIALS }}' | base64 -d > /tmp/gcp_key.json
-          echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/gcp_key.json" >> $GITHUB_ENV
+          echo "VOICEVOXエンジン起動待機中..."
+          for i in $(seq 1 36); do
+            if curl -sf http://localhost:50021/version; then
+              echo ""
+              echo "VOICEVOXエンジン起動完了"
+              break
+            fi
+            echo "待機中... ($i/36)"
+            sleep 5
+          done
 
       - name: Step 1 - Fetch Chiangmai news
         run: python scripts/01_fetch_news.py
@@ -47,7 +61,7 @@ jobs:
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
 
-      - name: Step 3 - Synthesize audio with Google TTS
+      - name: Step 3 - Synthesize audio with VOICEVOX
         run: python scripts/03_synthesize_audio.py
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
