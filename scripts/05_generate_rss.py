@@ -122,7 +122,7 @@ def update_feed(meta: dict, script: str) -> None:
 
 def main():
     meta_path = TEMP_DIR / "episode_meta.json"
-    script_path = TEMP_DIR / "script.txt"
+  　script_path = TEMP_DIR / "script.json"
 
     for p in [meta_path, script_path]:
         if not p.exists():
