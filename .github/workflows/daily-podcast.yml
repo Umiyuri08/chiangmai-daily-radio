@@ -2,9 +2,8 @@ name: Daily Podcast Pipeline
 
 on:
   schedule:
-    # JST 7:00 = UTC 22:00 (前日)
     - cron: "0 22 * * *"
-  workflow_dispatch:  # 手動実行も可能
+  workflow_dispatch:
 
 jobs:
   generate-and-publish:
@@ -29,7 +28,7 @@ jobs:
           python-version: "3.12"
           cache: "pip"
 
-     - name: Install dependencies
+      - name: Install dependencies
         run: |
           sudo apt-get update && sudo apt-get install -y ffmpeg
           pip install -r requirements.txt
@@ -92,5 +91,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/feed.xml
-          git diff --staged --quiet || git commit -m "🎙️ $(date +'%Y-%m-%d') エピソード自動生成"
+          git diff --staged --quiet || git commit -m "🎙️ $(date -u +%Y-%m-%d) エピソード自動生成"
           git push
