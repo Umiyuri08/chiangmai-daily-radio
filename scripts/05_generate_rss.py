@@ -61,8 +61,13 @@ def build_item(meta: dict, script: str) -> ET.Element:
     ET.SubElement(item, f"{{{CONTENT_NS}}}encoded").text = f"<![CDATA[{script}]]>"
     ET.SubElement(item, "pubDate").text = meta["pub_date"]
     ET.SubElement(item, "guid", {"isPermaLink": "false"}).text = meta["filename"]
+   # URLがフルURLでない場合はpublic_url_baseから組み立て
+    url = meta.get("url", "")
+    if not url.startswith("http"):
+        from config import R2
+        url = f"{R2['public_url_base']}/episodes/{meta['filename']}"
     enclosure = ET.SubElement(item, "enclosure")
-    enclosure.set("url", meta["url"])
+    enclosure.set("url", url)
     enclosure.set("length", str(meta["size_bytes"]))
     enclosure.set("type", "audio/mpeg")
     ET.SubElement(item, f"{{{ITUNES_NS}}}duration").text = "00:06:00"  # 概算
