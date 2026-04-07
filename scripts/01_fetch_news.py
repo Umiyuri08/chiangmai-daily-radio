@@ -14,7 +14,7 @@ sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent))
 from config import NEWS_SOURCES, TEMP_DIR
 
 JST = timezone(timedelta(hours=9))
-FETCH_HOURS = 72  # 過去72時間のニュースを収集
+FETCH_HOURS = 168  # 過去1週間のニュースを収集
 
 
 def fetch_rss(source: dict) -> list[dict]:
